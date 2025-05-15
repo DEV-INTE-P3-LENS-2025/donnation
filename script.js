@@ -34,7 +34,7 @@ function displayDonors(list) {
   });
 }
 
-// Filtres
+
 document.getElementById('tout-lemonde').addEventListener('click', () => { 
   displayDonors(donors);
 });
@@ -47,14 +47,14 @@ document.getElementById('filtrer-Femmes').addEventListener('click', () => {
   displayDonors(donors.filter(d => d.gender === 'female'));
 });
 
-// Tri
-// Écouteur pour le bouton "Trier par montant croissant"
+
+
 document.getElementById('sort-asc').addEventListener('click', () => {
   const sorted = [...donors].sort((a, b) => a.amount - b.amount);
   displayDonors(sorted);
 });
 
-// Écouteur pour le bouton "Trier par montant décroissant"
+
 document.getElementById('sort-desc').addEventListener('click', () => {
   const sorted = [...donors].sort((a, b) => b.amount - a.amount);
   displayDonors(sorted);
