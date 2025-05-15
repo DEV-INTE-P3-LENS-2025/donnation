@@ -1,3 +1,4 @@
+
 let donors = [];
 let sortByAmountAsc = true;
 
@@ -17,7 +18,7 @@ fetch('https://randomuser.me/api/?results=50')
   });
 
 function displayDonors(list) {
-  const container = document.getElementById('liste-donneurs');  // Utilisation de l'ID correct
+  const container = document.getElementById('liste-donneurs');  
   container.innerHTML = '';
   list.forEach(donor => {
     const card = document.createElement('div');
@@ -34,28 +35,32 @@ function displayDonors(list) {
 }
 
 // Filtres
-document.getElementById('tout-lemonde').addEventListener('click', () => {  // Correctement lié avec l'ID "tout-lemonde"
+document.getElementById('tout-lemonde').addEventListener('click', () => { 
   displayDonors(donors);
 });
 
-document.getElementById('filtrer-Hommes').addEventListener('click', () => {  // Correctement lié avec l'ID "filtrer-Hommes"
+document.getElementById('filtrer-Hommes').addEventListener('click', () => {  
   displayDonors(donors.filter(d => d.gender === 'male'));
 });
 
-document.getElementById('filtrer-Femmes').addEventListener('click', () => {  // Correctement lié avec l'ID "filtrer-Femmes"
+document.getElementById('filtrer-Femmes').addEventListener('click', () => {  
   displayDonors(donors.filter(d => d.gender === 'female'));
 });
 
 // Tri
-document.getElementById('montant').addEventListener('click', () => {  // Correctement lié avec l'ID "montant"
-  sortByAmountAsc = !sortByAmountAsc;
-  const sorted = [...donors].sort((a, b) =>
-    sortByAmountAsc ? a.amount - b.amount : b.amount - a.amount
-  );
+// Écouteur pour le bouton "Trier par montant croissant"
+document.getElementById('sort-asc').addEventListener('click', () => {
+  const sorted = [...donors].sort((a, b) => a.amount - b.amount);
   displayDonors(sorted);
 });
 
-document.getElementById('ordre-alphabetique').addEventListener('click', () => {  // Correctement lié avec l'ID "ordre-alphabetique"
+// Écouteur pour le bouton "Trier par montant décroissant"
+document.getElementById('sort-desc').addEventListener('click', () => {
+  const sorted = [...donors].sort((a, b) => b.amount - a.amount);
+  displayDonors(sorted);
+});
+
+document.getElementById('ordre-alphabetique').addEventListener('click', () => { 
   const sorted = [...donors].sort((a, b) =>
     a.name.localeCompare(b.name)
   );
